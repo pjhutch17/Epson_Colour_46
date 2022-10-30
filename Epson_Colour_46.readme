@@ -1,0 +1,35 @@
+Short: 24 bit Epson Stylus Driver for WB V46.00
+Author: pjhutch17@talktalk.net (Peter Hutchison)
+Uploader: pjhutch17@talktal.net (Peter Hutchison)
+Type: text/print
+Architecture: ppc-amigaos
+
+Description:
+
+ This is the new 24 bit Epson Stylus Color driver for
+Workbench 4.1 using the new features of the
+new printer.device.
+
+Changes:
+ Re-wrote init.asm in C as init.c
+ Add Magic code to Init string for new printer.
+ Updated install script (Cxx series only)
+ 
+Requirements: 
+ 
+ Amiga with AmigaOS 4.1, 020 or
+ better, KS 3.1, 16Mb RAM.
+
+Compilation:
+ Should compile for GCC from SDK
+
+Contents:
+ Epson v46 Driver
+ Guide file
+ Readme file
+ Source code
+ 
+Distribution:
+ Copyright (C) by Peter Hutchison
+ Driver and source freely distributable.
+  

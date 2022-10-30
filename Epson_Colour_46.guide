@@ -1,0 +1,276 @@
+@database epsoncolor
+@node main
+
+                        Epson Stylus Colour 24bit driver
+                             By Peter Hutchison
+                                26/10/2022  46
+
+   @{"Introduction" link intro}
+
+   @{"Requirements" link req}
+
+   @{"Features" link feat}
+
+   @{"Installation" link install}
+
+   @{"Customisation" link custom}
+
+   @{"Preferences" link pref}
+
+   @{"History" link hist}
+
+   @{"Additional info" link add}
+    
+   @{"Author" link auth}
+
+@endnode
+@node req
+
+@{U}Requirements@{uu}
+
+Computer: Amiga with 68020 or better 16Mb RAM
+Workbench: WB 4,1 
+Printer: Epson Stylus Color S20, D120, C20, C40, C60, C80, C90 series.
+
+NB: Printer enhancement packages such as Turboprint/Studio should not be
+used with this driver.
+
+@endnode
+@node intro
+
+@{u}Introduction@{uu}
+
+ This is a colour printer driver for the  Epson Stylus Colour printers. 
+It should work with the Stylus S20, D120 or Cx0 series
+which also supports 1440 dpi.
+
+ This driver was written as no other drivers other than the HP Laserjet and
+Deskjet drivers were updated on Workbench 3.5 and 3.9 and only provide the
+poorer EpsonX and EpsonQ drivers.
+
+  Unfortunately, do to lack of info from Epson I am unable to directly 
+support the 1440 or 2880 dpi modes or 6 colour printer modes either.
+
+@endnode
+@node feat
+   
+@{u}Features@{uu}
+
+Colour: CMYK (Colour AND Black)
+
+Resolution: 180 to 720 dpi (using Microdot & Microweave).
+            Supports Microweave in Letter Quality mode.
+
+Aspect:  Portrait and Landscape
+
+Output:  B&W and Colour Text,
+         B&W, greyscale and colour graphics
+
+Optimised for Speed.
+
+Typefaces:
+
+  ESC(B = Roman 
+  ESC(R = Sans serif
+  ESC(K = Courier Prestige
+  ESC(A = Script
+  ESC(E = Roman T
+  ESC(H = Sans serif H.
+
+(use above printer command in your application to set the typeface).
+           
+Compiled with SAS C 6.58 for '020 or better. Strict Ansi
+Also compiles under Storm C 4 (GCC).
+
+@{u}Densities@{uu}
+
+0  180 x 180 
+1  180 x 180    
+2  360 x 360    
+3  360 x 360    
+4  720 x 720    
+5  720 x 720    
+6  720 x 720 
+7  720 x 720    
+
+Paper: 10in for most sizes, 14in for US LEGAL
+Recommend densities 0-3 for Word Processing output.
+
+
+@endnode
+@node install
+
+@{u}Installation@{uu}
+
+Run Install_Driver and follow instructions, select printer that matches
+your  Printer model. If installing a new driver run the Preferences to select 
+the correct driver and set it up.
+
+
+@endnode
+@node pref
+
+@{u}Preferences@{uu}
+
+1. Printer Type
+   
+   Unit         - select Unit number (usually 0)
+   Unit Name    - select Unit name (if other than built in PRT: port)
+
+   Printer Type - select appropiate printer from list
+   Printer Port - usually Parallel
+   Custom device - Enable if using third party parallel device
+   Port Device  - Name of driver (in using other than parallel.device)
+   Port Unit    - Unit for new port driver
+   
+2. Page Size & Margins
+
+   Paper Type    - Use Single for paper such as A4
+   Paper Format  - Use US Legal, US Letter or  DIN A4 for single sheet paper 
+   Printer Pitch - Pica, Elite of Fine (choose one that suits you) 
+   Print Spacing - 6 or 8 lpi (I use 6)
+   Paper Length  - Set to CUSTOM paper length (lines)
+   Margins       - Use 2 and 80 characters
+   Density       - Use whatever you fancy (use a small figure for speed
+                   and less ink)
+ 
+   A picture on the right hand side will guide you for print areas for text/gfx
+   so you can adjust margins to your requirements.
+   
+2. Settings
+
+   Print Quality - Use Letter for max quality  
+   Dithering     - Floyd Steinburg for best quality
+   Scaling       - Integer for line gfx or text. 
+                   Use Fraction for shaded pics.
+   Image         - Positive (Neg is rarely used)
+   Aspect        - Horizontal 
+   Shade         - Color (NB: Use BW if using Multiview with Text)
+   Threshold     - Around 5 (use a smaller figure if too dark)
+   Left Edge     - Specify left margin in inch/10
+   Color Correction - Don't set, use all 16m (24 bit) colours
+   Limits        - Set to ignore
+   Centre Picture - Tick this if you want centralised pics
+   Smoothing     - Used to smooth out lines esp. in graphic dumps of text
+
+3. Addtional features
+
+   Microweave    - Enabled when Paper Quality is set to Letter.
+   
+   Dot Control   - Enabled for Density 7.
+   
+   Gamma Control - Gamma correction for graphics. Use Threshold to set Gamma Correction
+    
+   
+Further information is in your Workbench Users Guide (Ch 9) or see my web page
+for info on preferences.
+
+If you are experiencing problems with this driver send me email (see below).
+You can download updates from Aminet, my web page or Amiga Format CDs.
+
+@endnode
+@node custom
+
+@{u}Customisation@{uu}
+
+The default character set is set to US (0), using the ESCR command. It is
+possible now to change the default char set by using a binary editor and
+change the command ESCR0 (1B 52 00) to another character set (ie a new 'n'
+value) at around the 00001800 address.
+
+Char sets           Char set
+00    US            08   Japan (Eng)
+01    France        09   Norway
+02    Germany       0A   Denmark II
+03    UK            0B   Spain II
+04    Denmark I     0C   Lat America
+05    Sweden        0D   Korea
+06    Italy         80   Legal
+07    Spain I
+
+You can also change the default Typeface as well by looking for ESCk0 (1B 
+6B 00) to one of the following:
+
+Type face
+00    Roman
+01    Sans Serif
+02    Courier
+03    Prestige
+04    Script
+0A    Roman Times
+0B    Sans Serif H
+
+@endnode
+@node hist
+
+@{u}History@{uu}
+
+44.01 First version.
+    Tested okay on PPaint, WordWorth and text.
+
+44.02 Final release.
+11/12/01  Fixed bugs with color print (width) and B&W/Grey - buffers not cleared.
+          Rewrote Guide for new AmigaOS and new Preferences layout.
+          Rewrote Install script for WB3.5 only and all Epson Printers.
+
+06/12/02  Replaced old AmigaDOS script with better Installer script.
+          Added Epson Stylus Color 200 to printer list.
+
+Updated
+14/06/04  Removed redundant code from transfer.c
+          Updated code to Strict Ansi
+          Compiles under SAS/C & Storm C (GCC)
+          Headers and prototypes moved to Global.h
+21/02/05
+          Source code included in distribution
+          Readme updated
+
+45.0
+21/03/09 Replaced init.asm with init.c code for more portability.
+         Could not replace printertag.asm due to driver crashing
+         when I wrote in C. Something to do with PEDData struct.
+         Added Epson magic code to init string for modern Inkjets.
+
+46.0
+26/03/22 Updated code for AmigaOS 4.1 and PowerPC processor.
+         Removed magic code for init.
+         Use AllocVecTags() instead of deprecated AllocVec().              
+                         
+@endnode
+@node add
+
+@{u}Additional Information@{uu}
+    
+ Stylus Photo Printers use a new subset of the ESC/P2 command language which has not
+been made publically available as well as details of how exactly the 1440 dpi is made
+(I believe it may have to do with the ESC(e Microdot command for smaller dots.
+
+New commands include:
+ESC(r  - New colour command?!
+ESC(K  - Print mode?!
+ESC(\  - Unknown
+ESC(s  - Unknown
+ESC(B  - Bar code (added Dec 97)
+ESC(R  - Remote?!
+
+Details of these new commands are non-existant. If you have any details of them please
+email me at pjhutch@pcguru.plus.com.
+
+My drivers currently lack any use of colour correction to improve performance and quality due 
+to lack of time and my driver writing skills. Source is 
+available to those who could update them for me!
+
+Source code has been supplied to Hyperion for AmigaOS 4.
+
+@endnode
+@node auth
+
+@{u}Author@{uu}
+
+This driver is Giftware.
+
+Name: Peter Hutchison
+Email: pjhutch17@talktalk.net
+Web:   http://www.pjhutchison.org
+
+@endnode

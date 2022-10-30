@@ -1,0 +1,3 @@
+echo Compiling Epson_Stylus_Color
+
+gcc init.c compression.c data.c dospecial.c density.c render.c transfer.c -g -Wall -mcrt=clib2 -lamiga  -o Epson_Stylus_Color -nostartfiles -KPrinterSegment
